@@ -329,12 +329,14 @@ describe('WorkbookReader', () => {
         ws.getImages().forEach(image => {
           const col = ws.getColumn(image.range.tl.nativeCol + 1);
 
-          if (col.isCustomWidth) {
-            expect(image.range.tl.colWidth).to.equal(
-              Math.floor(col.width * 10000)
-            );
+          if (col.width) {
+            expect(image.range.tl.colWidth).to.equal(Math.floor(col.width * 7 * 9525));
           } else {
-            expect(image.range.tl.colWidth).to.equal(640000);
+            expect(image.range.tl.colWidth).to.equal(
+              ws.properties.defaultColWidth
+                ? Math.floor(ws.properties.defaultColWidth * 7 * 9525)
+                : 64 * 9525
+            );
           }
         });
       });
@@ -345,11 +347,11 @@ describe('WorkbookReader', () => {
           const row = ws.getRow(image.range.tl.nativeRow + 1);
 
           if (row.height) {
-            expect(image.range.tl.rowHeight).to.equal(
-              Math.floor(row.height * 10000)
-            );
+            expect(image.range.tl.rowHeight).to.equal(Math.floor(row.height * 12700));
           } else {
-            expect(image.range.tl.rowHeight).to.equal(180000);
+            expect(image.range.tl.rowHeight).to.equal(
+              Math.floor((ws.properties.defaultRowHeight || 15) * 12700)
+            );
           }
         });
       });
@@ -376,12 +378,14 @@ describe('WorkbookReader', () => {
         ws.getImages().forEach(image => {
           const col = ws.getColumn(image.range.br.nativeCol + 1);
 
-          if (col.isCustomWidth) {
-            expect(image.range.br.colWidth).to.equal(
-              Math.floor(col.width * 10000)
-            );
+          if (col.width) {
+            expect(image.range.br.colWidth).to.equal(Math.floor(col.width * 7 * 9525));
           } else {
-            expect(image.range.br.colWidth).to.equal(640000);
+            expect(image.range.br.colWidth).to.equal(
+              ws.properties.defaultColWidth
+                ? Math.floor(ws.properties.defaultColWidth * 7 * 9525)
+                : 64 * 9525
+            );
           }
         });
       });
@@ -392,11 +396,11 @@ describe('WorkbookReader', () => {
           const row = ws.getRow(image.range.br.nativeRow + 1);
 
           if (row.height) {
-            expect(image.range.br.rowHeight).to.equal(
-              Math.floor(row.height * 10000)
-            );
+            expect(image.range.br.rowHeight).to.equal(Math.floor(row.height * 12700));
           } else {
-            expect(image.range.br.rowHeight).to.equal(180000);
+            expect(image.range.br.rowHeight).to.equal(
+              Math.floor((ws.properties.defaultRowHeight || 15) * 12700)
+            );
           }
         });
       });
