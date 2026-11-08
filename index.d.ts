@@ -634,7 +634,7 @@ export interface Column {
 	/**
 	 * The cell values in the column
 	 */
-	values: CellValue;
+	values: CellValue[];
 
 	/**
 	 * Column letter key
