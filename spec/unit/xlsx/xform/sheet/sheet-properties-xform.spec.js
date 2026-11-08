@@ -89,7 +89,7 @@ const expectations = [
       outlineProperties: {summaryBelow: false},
     },
     xml:
-      '<sheetPr><pageSetUpPr fitToPage="1"/><outlinePr summaryBelow="0"/></sheetPr>',
+      '<sheetPr><outlinePr summaryBelow="0"/><pageSetUpPr fitToPage="1"/></sheetPr>',
     parsedModel: {
       pageSetup: {fitToPage: true},
       outlineProperties: {summaryBelow: false},
