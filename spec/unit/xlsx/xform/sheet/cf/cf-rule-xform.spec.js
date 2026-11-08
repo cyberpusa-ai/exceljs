@@ -191,6 +191,156 @@ const expectations = [
     },
     tests: ['render', 'parse'],
   },
+  {
+    title: 'Expression with stopIfTrue',
+    create() {
+      return new CfRuleXform();
+    },
+    preparedModel: {
+      type: 'expression',
+      dxfId: 1,
+      priority: 1,
+      stopIfTrue: true,
+      formulae: ['ROW()'],
+    },
+    xml: `
+      <cfRule type="expression" dxfId="1" priority="1" stopIfTrue="1">
+        <formula>ROW()</formula>
+      </cfRule>
+    `,
+    parsedModel: {
+      type: 'expression',
+      dxfId: 1,
+      priority: 1,
+      stopIfTrue: true,
+      formulae: ['ROW()'],
+    },
+    tests: ['render', 'parse'],
+  },
+  {
+    title: 'Cell Is with stopIfTrue',
+    create() {
+      return new CfRuleXform();
+    },
+    preparedModel: {
+      type: 'cellIs',
+      dxfId: 1,
+      priority: 1,
+      operator: 'notBetween',
+      stopIfTrue: true,
+      formulae: ['1', '5'],
+    },
+    xml: `
+      <cfRule type="cellIs" dxfId="1" priority="1" operator="notBetween" stopIfTrue="1">
+        <formula>1</formula>
+        <formula>5</formula>
+      </cfRule>
+    `,
+    parsedModel: {
+      type: 'cellIs',
+      dxfId: 1,
+      priority: 1,
+      operator: 'notBetween',
+      stopIfTrue: true,
+      formulae: ['1', '5'],
+    },
+    tests: ['render', 'parse'],
+  },
+  {
+    title: 'Top 10 with stopIfTrue',
+    create() {
+      return new CfRuleXform();
+    },
+    preparedModel: {type: 'top10', dxfId: 1, priority: 1, rank: 10, stopIfTrue: true},
+    xml: '<cfRule type="top10" dxfId="1" priority="1" rank="10" stopIfTrue="1" />',
+    parsedModel: {type: 'top10', dxfId: 1, priority: 1, rank: 10, stopIfTrue: true},
+    tests: ['render', 'parse'],
+  },
+  {
+    title: 'Above Average with stopIfTrue',
+    create() {
+      return new CfRuleXform();
+    },
+    preparedModel: {type: 'aboveAverage', dxfId: 1, priority: 1, stopIfTrue: true},
+    xml: '<cfRule type="aboveAverage" dxfId="1" priority="1" stopIfTrue="1" />',
+    parsedModel: {type: 'aboveAverage', dxfId: 1, priority: 1, stopIfTrue: true},
+    tests: ['render', 'parse'],
+  },
+  {
+    title: 'Contains Text with stopIfTrue',
+    create() {
+      return new CfRuleXform();
+    },
+    preparedModel: {
+      type: 'containsText',
+      dxfId: 1,
+      priority: 1,
+      operator: 'containsBlanks',
+      ref: 'A1:B2',
+      stopIfTrue: true,
+    },
+    xml: `
+      <cfRule type="containsBlanks" dxfId="1" priority="1" operator="containsBlanks" stopIfTrue="1">
+        <formula>LEN(TRIM(A1))=0</formula>
+      </cfRule>
+    `,
+    parsedModel: {
+      type: 'containsText',
+      dxfId: 1,
+      priority: 1,
+      operator: 'containsBlanks',
+      stopIfTrue: true,
+      formulae: ['LEN(TRIM(A1))=0'],
+    },
+    tests: ['render', 'parse'],
+  },
+  {
+    title: 'Time Period with stopIfTrue',
+    create() {
+      return new CfRuleXform();
+    },
+    preparedModel: {
+      type: 'timePeriod',
+      dxfId: 1,
+      priority: 1,
+      timePeriod: 'today',
+      ref: 'A1:B2',
+      stopIfTrue: true,
+    },
+    xml: `
+      <cfRule type="timePeriod" dxfId="1" priority="1" timePeriod="today" stopIfTrue="1">
+        <formula>FLOOR(A1,1)=TODAY()</formula>
+      </cfRule>
+    `,
+    parsedModel: {
+      type: 'timePeriod',
+      dxfId: 1,
+      priority: 1,
+      timePeriod: 'today',
+      stopIfTrue: true,
+      formulae: ['FLOOR(A1,1)=TODAY()'],
+    },
+    tests: ['render', 'parse'],
+  },
+  {
+    title: 'Expression with stopIfTrue false',
+    create() {
+      return new CfRuleXform();
+    },
+    preparedModel: {
+      type: 'expression',
+      dxfId: 1,
+      priority: 1,
+      stopIfTrue: false,
+      formulae: ['ROW()'],
+    },
+    xml: `
+      <cfRule type="expression" dxfId="1" priority="1">
+        <formula>ROW()</formula>
+      </cfRule>
+    `,
+    tests: ['render'],
+  },
 ];
 
 describe('CfRuleXform', () => {
