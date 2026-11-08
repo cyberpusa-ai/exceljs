@@ -89,3 +89,19 @@ const expectations = [
 describe('CfRuleExtXform', () => {
   testXformHelper(expectations);
 });
+
+const GUID = /^\{[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}\}$/;
+
+describe('CfRuleExtXform prepare', () => {
+  it('assigns a GUID x14Id to ext rules', () => {
+    const model = {type: 'iconSet', iconSet: '3Triangles'};
+    new CfRuleExtXform().prepare(model);
+    expect(model.x14Id).to.match(GUID);
+  });
+
+  it('does not assign an x14Id to non-ext rules', () => {
+    const model = {type: 'iconSet', iconSet: '3Arrows'};
+    new CfRuleExtXform().prepare(model);
+    expect(model.x14Id).to.be.undefined();
+  });
+});
