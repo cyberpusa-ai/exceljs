@@ -1283,6 +1283,15 @@ The following table defines the properties supported by tables.
 | columns        | Column definitions | Y |   |
 | rows           | Rows of data | Y |   |
 
+The table name must follow Excel's rules, otherwise `addTable` (and `table.commit()`) throws an
+error instead of writing a file that Excel has to repair:
+
+* it starts with a letter, an underscore (`_`) or a backslash (`\`);
+* the remaining characters are letters, digits, periods (`.`) or underscores (no spaces or other
+  special characters);
+* it does not look like a cell reference, e.g. `A1`, `R1C1`, `R` or `C`;
+* it is at most 255 characters long.
+
 ### Table Style Properties[⬆](#contents)<!-- Link generated with jump2header -->
 
 The following table defines the properties supported within the table
