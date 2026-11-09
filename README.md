@@ -1283,6 +1283,9 @@ The following table defines the properties supported by tables.
 | columns        | Column definitions | Y |   |
 | rows           | Rows of data | Y |   |
 
+Excel needs at least one data row in a table, so if `rows` is empty (for example `rows: []`, or
+after `table.removeRows()` removed every row) the table keeps one blank data row.
+
 The table name must follow Excel's rules, otherwise `addTable` (and `table.commit()`) throws an
 error instead of writing a file that Excel has to repair:
 
