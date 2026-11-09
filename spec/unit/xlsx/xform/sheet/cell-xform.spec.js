@@ -331,6 +331,46 @@ const expectations = [
     },
   },
   {
+    title: 'Empty String Formula',
+    create() {
+      return new CellXform();
+    },
+    preparedModel: {
+      address: 'A1',
+      type: Enums.ValueType.Formula,
+      formula: 'A2',
+      result: '',
+    },
+    xml: '<c r="A1" t="str"><f>A2</f><v></v></c>',
+    parsedModel: {
+      address: 'A1',
+      type: Enums.ValueType.Formula,
+      formula: 'A2',
+      result: '',
+    },
+    tests: ['render', 'renderIn', 'parse'],
+  },
+  {
+    title: 'Zero Number Formula',
+    create() {
+      return new CellXform();
+    },
+    preparedModel: {
+      address: 'A1',
+      type: Enums.ValueType.Formula,
+      formula: 'A2',
+      result: 0,
+    },
+    xml: '<c r="A1"><f>A2</f><v>0</v></c>',
+    parsedModel: {
+      address: 'A1',
+      type: Enums.ValueType.Formula,
+      formula: 'A2',
+      result: 0,
+    },
+    tests: ['render', 'renderIn', 'parse'],
+  },
+  {
     title: 'String Formula',
     create() {
       return new CellXform();
