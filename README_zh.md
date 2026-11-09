@@ -1140,6 +1140,7 @@ ws.getCell('B1').note = {
 | margins | N        | {}  | 确定自动或自定义设置单元格注释的边距值 |
 | protection   | N        | {} | 可以使用保护属性来指定对象和对象文本的锁定状态 |
 | editAs   | N        | 'absolute' | 可以使用'editAs'属性来指定注释如何锚定到单元格 |
+| autoShape | N       | false | 为 true 时，Excel 会自动调整注释框大小以适应文本（设置批注格式 → 对齐 → 自动调整大小） |
 
 ### 单元格批注页边距[⬆](#目录)<!-- Link generated with jump2header -->
 
