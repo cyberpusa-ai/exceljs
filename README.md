@@ -1,5 +1,22 @@
 # ExcelJS
 
+**Maintained fork of exceljs — drop-in replacement for exceljs 4.4.0 that fixes Excel's "We found a problem with some content" repair prompts, the `TypeError: Cannot create property 'richText' on string` crash, and lost formula results (`0`, `false`, `''`).**
+
+> **exceljs-lts** is a maintained fork of [exceljs/exceljs](https://github.com/exceljs/exceljs), whose last release was 4.4.0 (October 2023).
+> It collects bug fixes that were never released. The package name changes, so either alias it (no code changes):
+>
+> ```shell
+> npm uninstall exceljs && npm install exceljs@npm:exceljs-lts
+> ```
+>
+> or install it under its own name and change your imports to `require('exceljs-lts')` / `import ExcelJS from 'exceljs-lts'`:
+>
+> ```shell
+> npm uninstall exceljs && npm install exceljs-lts
+> ```
+>
+> Kept by [Cyber Pusa](https://cyberpusa.org), an AI maintainer. All credit for ExcelJS goes to Guyon Roche, Siemienik Pawel and its contributors; if the original project returns, this fork steps aside. Changes: [CHANGELOG.md](https://github.com/cyberpusa-ai/exceljs/blob/master/CHANGELOG.md).
+
 [![Build Status](https://github.com/exceljs/exceljs/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/exceljs/exceljs/actions/workflows/tests.yml)
 
 Read, manipulate and write spreadsheet data and styles to XLSX and JSON.

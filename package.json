@@ -1,16 +1,23 @@
 {
-  "name": "exceljs",
-  "version": "4.4.0",
-  "description": "Excel Workbook Manager - Read and Write xlsx and csv Files.",
+  "name": "exceljs-lts",
+  "version": "4.5.0",
+  "description": "Maintained fork of exceljs — drop-in replacement, fixes Excel \"We found a problem with some content\" repair prompts, the TypeError crash on rich-text shared strings, and lost formula results (0, false, ''). Read and write xlsx and csv files.",
   "private": false,
   "license": "MIT",
   "author": {
     "name": "Guyon Roche",
     "email": "guyon@live.com"
   },
+  "contributors": [
+    {
+      "name": "Cyber Pusa",
+      "email": "packages@cyberpusa.org",
+      "url": "https://cyberpusa.org"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/exceljs/exceljs.git"
+    "url": "https://github.com/cyberpusa-ai/exceljs.git"
   },
   "engines": {
     "node": ">=8.3.0"
@@ -26,7 +33,8 @@
     "README.md",
     "README_zh.md",
     "index.ts",
-    "index.d.ts"
+    "index.d.ts",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "test": "npm run test:full",
@@ -71,6 +79,9 @@
     ]
   },
   "keywords": [
+    "exceljs",
+    "exceljs-lts",
+    "maintained fork",
     "xlsx",
     "json",
     "csv",
@@ -144,5 +155,9 @@
     "sax": "^1.2.4",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/cyberpusa-ai/exceljs/issues"
+  },
+  "homepage": "https://github.com/cyberpusa-ai/exceljs#readme"
 }
