@@ -1160,6 +1160,7 @@ The following table defines the properties supported by cell comments.
 | margins | N        | {}  | Determines the value of margins for automatic or custom cell comments
 | protection   | N        | {} | Specifying the lock status of objects and object text using protection attributes |
 | editAs   | N        | 'absolute' | Use the 'editAs' attribute to specify how the annotation is anchored to the cell  |
+| autoShape | N       | false | When true, Excel resizes the comment box to fit its text (Format Comment → Alignment → Automatic size) |
 
 ### Cell Comments Margins
 
