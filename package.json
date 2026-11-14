@@ -1,6 +1,6 @@
 {
   "name": "exceljs-lts",
-  "version": "4.5.0",
+  "version": "4.5.2",
   "description": "Maintained fork of exceljs — drop-in replacement, fixes Excel \"We found a problem with some content\" repair prompts, the TypeError crash on rich-text shared strings, and lost formula results (0, false, ''). Read and write xlsx and csv files.",
   "private": false,
   "license": "MIT",
