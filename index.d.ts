@@ -1,4 +1,9 @@
-declare interface Buffer extends ArrayBuffer { }
+/**
+ * The binary type ExcelJS reads and returns: Node's Buffer (a Uint8Array; the browser build
+ * returns a Buffer polyfill). Resolved through the 'buffer' module because a local name
+ * would shadow the global Buffer. Kept as an exported name for backward compatibility.
+ */
+declare type Buffer = ReturnType<typeof import('buffer')['Buffer']['alloc']>;
 
 export declare enum RelationshipType {
 	None = 0,
@@ -889,7 +894,7 @@ export interface Image {
 	extension: 'jpeg' | 'png' | 'gif';
 	base64?: string;
 	filename?: string;
-	buffer?: Buffer;
+	buffer?: Buffer | ArrayBuffer | Uint8Array;
 }
 export interface IAnchor {
 	col: number;
@@ -1491,10 +1496,10 @@ export interface Xlsx {
 	read(stream: import('stream').Stream, options?: Partial<XlsxReadOptions>): Promise<Workbook>;
 
 	/**
-	 * load from an array buffer
+	 * load from a Buffer, Uint8Array or ArrayBuffer
 	 * @param buffer
 	 */
-	load(buffer: Buffer, options?: Partial<XlsxReadOptions>): Promise<Workbook>;
+	load(buffer: Buffer | ArrayBuffer | Uint8Array, options?: Partial<XlsxReadOptions>): Promise<Workbook>;
 
 	/**
 	 * write to a buffer
