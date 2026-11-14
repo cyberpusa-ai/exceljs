@@ -1,4 +1,22 @@
-declare interface Buffer extends ArrayBuffer { }
+/**
+ * The value returned by `writeBuffer()`. At runtime it is a Node.js `Buffer` (in browsers, the
+ * bundled `buffer` polyfill, which is a `Uint8Array`). It is also typed as `ArrayBuffer` so that
+ * code written against earlier typings, where `Buffer` was declared as an `ArrayBuffer`, still compiles.
+ */
+export interface ExcelBuffer extends ExcelNodeBuffer, Omit<ArrayBuffer, 'slice'> {
+	// Buffer and ArrayBuffer disagree on these two members, so they are redeclared with types that
+	// fit both (a plain `Buffer & ArrayBuffer` reduces to `never` on TypeScript 5.7+).
+	readonly [Symbol.toStringTag]: never;
+	slice(start?: number, end?: number): ExcelBuffer;
+}
+
+// A Buffer backed by a plain ArrayBuffer (`Buffer<ArrayBuffer>` on @types/node 22+, `Buffer` before).
+type ExcelNodeBuffer = ReturnType<Buffer['slice']>;
+
+/**
+ * Binary data accepted by `load()` and `addImage()`.
+ */
+export type ExcelBufferInput = Buffer | ArrayBuffer | Uint8Array;
 
 export declare enum RelationshipType {
 	None = 0,
@@ -889,7 +907,7 @@ export interface Image {
 	extension: 'jpeg' | 'png' | 'gif';
 	base64?: string;
 	filename?: string;
-	buffer?: Buffer;
+	buffer?: ExcelBufferInput;
 }
 export interface IAnchor {
 	col: number;
@@ -1494,12 +1512,12 @@ export interface Xlsx {
 	 * load from an array buffer
 	 * @param buffer
 	 */
-	load(buffer: Buffer, options?: Partial<XlsxReadOptions>): Promise<Workbook>;
+	load(buffer: ExcelBufferInput, options?: Partial<XlsxReadOptions>): Promise<Workbook>;
 
 	/**
 	 * write to a buffer
 	 */
-	writeBuffer(options?: Partial<XlsxWriteOptions>): Promise<Buffer>;
+	writeBuffer(options?: Partial<XlsxWriteOptions>): Promise<ExcelBuffer>;
 
 	/**
 	 * write to a file
@@ -1606,7 +1624,7 @@ export interface Csv {
 	/**
 	 * write to a buffer
 	 */
-	writeBuffer(options?: Partial<CsvWriteOptions>): Promise<Buffer>;
+	writeBuffer(options?: Partial<CsvWriteOptions>): Promise<ExcelBuffer>;
 
 	/**
 	 * write to a file
@@ -1623,7 +1641,7 @@ export interface Media {
 	type: string;	// image,background
 	name: string;
 	extension: string;
-	buffer: Buffer;
+	buffer: ExcelBuffer;
 }
 
 export interface Address {
@@ -1784,7 +1802,7 @@ export class Workbook {
 	 */
 	addImage(img: Image): number;
 
-	getImage(id: number): Image;
+	getImage(id: number): Omit<Image, 'buffer'> & { buffer?: ExcelBuffer };
 }
 
 export interface TableStyleProperties {
