@@ -675,6 +675,19 @@ worksheet.autoFilter = {
 }
 ```
 
+Specific columns can be excluded from showing a filter button with `exclude`. It takes an array of
+column offsets within the range (0 is the leftmost column of the range) and hides the filter button
+on those columns, e.g. under merged header cells.
+
+```javascript
+// Set an auto filter from A1 to E1, hiding the filter buttons on columns A and C
+worksheet.autoFilter = {
+  from: 'A1',
+  to: 'E1',
+  exclude: [0, 2],
+}
+```
+
 ## Columns[⬆](#contents)<!-- Link generated with jump2header -->
 
 ```javascript

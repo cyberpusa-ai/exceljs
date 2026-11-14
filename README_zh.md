@@ -641,6 +641,17 @@ worksheet.autoFilter = {
 }
 ```
 
+可以使用 `exclude` 隐藏指定列的筛选按钮。它接受一个列偏移数组（0 表示范围最左侧的列），例如用于合并的标题单元格。
+
+```javascript
+// 将自动筛选器设置为从 A1 到 E1，并隐藏 A 列和 C 列的筛选按钮
+worksheet.autoFilter = {
+  from: 'A1',
+  to: 'E1',
+  exclude: [0, 2],
+}
+```
+
 ## 列[⬆](#目录)<!-- Link generated with jump2header -->
 
 ```javascript

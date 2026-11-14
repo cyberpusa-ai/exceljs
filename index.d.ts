@@ -865,6 +865,10 @@ export interface HeaderFooter {
 export type AutoFilter = string | {
 	from: string | { row: number; column: number };
 	to: string | { row: number; column: number };
+	/**
+	 * Columns (0 = leftmost column of the range) whose filter button is hidden
+	 */
+	exclude?: number[];
 };
 
 export interface WorksheetProtection {
