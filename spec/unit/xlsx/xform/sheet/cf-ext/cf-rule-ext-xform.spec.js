@@ -84,6 +84,46 @@ const expectations = [
     },
     tests: ['render', 'parse'],
   },
+  {
+    title: 'Expression',
+    create() {
+      return new CfRuleExtXform();
+    },
+    preparedModel: {
+      type: 'expression',
+      x14Id: 'x14-id',
+      priority: 1,
+      formulae: ['Sheet2!$A$1=1'],
+      style: {
+        fill: {type: 'pattern', bgColor: {argb: 'FFFF0000'}},
+        numFmt: {id: 164, formatCode: '0.0'},
+      },
+    },
+    xml: `
+      <x14:cfRule type="expression" priority="1" id="x14-id">
+        <xm:f>Sheet2!$A$1=1</xm:f>
+        <x14:dxf>
+          <numFmt numFmtId="164" formatCode="0.0"/>
+          <fill><patternFill><bgColor rgb="FFFF0000"/></patternFill></fill>
+        </x14:dxf>
+      </x14:cfRule>
+    `,
+    parsedModel: {
+      type: 'expression',
+      x14Id: 'x14-id',
+      priority: 1,
+      formulae: ['Sheet2!$A$1=1'],
+      style: {
+        alignment: null,
+        border: null,
+        fill: {type: 'pattern', bgColor: {argb: 'FFFF0000'}},
+        font: null,
+        numFmt: {id: 164, formatCode: '0.0'},
+        protection: null,
+      },
+    },
+    tests: ['render', 'parse'],
+  },
 ];
 
 describe('CfRuleExtXform', () => {
@@ -103,5 +143,10 @@ describe('CfRuleExtXform prepare', () => {
     const model = {type: 'iconSet', iconSet: '3Arrows'};
     new CfRuleExtXform().prepare(model);
     expect(model.x14Id).to.be.undefined();
+  });
+
+  it('only treats expression rules read from x14:cfRule as ext', () => {
+    expect(CfRuleExtXform.isExt({type: 'expression', formulae: ['A1=1']})).to.be.false();
+    expect(CfRuleExtXform.isExt({type: 'expression', x14Id: '{ID}', formulae: ['A1=1']})).to.be.true();
   });
 });
